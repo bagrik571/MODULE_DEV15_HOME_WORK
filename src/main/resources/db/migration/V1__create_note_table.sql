@@ -1,0 +1,2 @@
+CREATE TABLE note (id SERIAL PRIMARY KEY, title VARCHAR CHECK (length(title) <= 150) NOT NULL, content VARCHAR);
+ALTER SEQUENCE note_id_seq RESTART WITH 1;

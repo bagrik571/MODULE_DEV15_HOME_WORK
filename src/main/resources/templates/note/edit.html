@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title> Notes </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"> </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"> </script>
+</head>
+<style>
+  h2 {
+    position: reletive;
+    padding: 10;
+    margin: 10;
+    font-size: 2.5em;
+    padding: 70px 0 0 0;
+    color: white;
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    text-align: center;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+  }
+  button {
+    display: inline-flex;
+    height: 40px;
+    width: 150px;
+    border: 2px solid #BFC0C0;
+    margin: 20px 20px 20px 20px;
+    color: #BFC0C0;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: .8em;
+    letter-spacing: 1.5px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  button:hover {
+    color: #3498db;
+  }
+  button::after {
+    content: "";
+    background: #ecf0f1;
+    position: absolute;
+    z-index: -1;
+    padding: 0.85em 0.75em;
+    display: block;
+  }
+  body {
+    background-size: 400% 400%;
+    margin: 2rem;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+    color: black;
+  }
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
+<body>
+<div class="container">
+  <h2> Note Editor </h2>
+
+  <!id-- -->
+  <form action="/note/edit" method="post">
+  <div class="row">
+    <div class="col-8">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">ID</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Enter note ID" aria-label="Enter note ID" aria-describedby="basic-addon1" name="id" th:value="${note.id}" readonly>
+      </div>
+
+      <!title-- -->
+      <div class="row">
+        <div class="col-8">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">#</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1" name="title" th:value="${note.title}">
+          </div>
+
+          <!content-- -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> Content </span>
+            </div>
+            <textarea class="form-control" aria-label="Content" name="content" cols="30" rows="10" th:text="${note.content}"> </textarea>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn-primary" type="submit"> Update Note </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      </form>
+</div>
+</body>
+</html>
+

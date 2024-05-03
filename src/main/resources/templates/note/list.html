@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Notes </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"> </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"> </script>
+</head>
+<style>
+    h2 {
+        position: relative;
+        padding: 10;
+        margin: 10;
+        font-size: 2.5em;
+        padding: 70px 0 0 0;
+        color: white;
+        font-weight: 300;
+        letter-spacing: 1px;
+        font-family: "Raleway", sans-serif;
+        font-weight: 300;
+        text-align: center;
+        -webkit-transition: all 0.4s ease 0s;
+        -o-transition: all 0.4s ease 0s;
+        transition: all 0.4s ease 0s;
+    }
+    button {
+        display: inline-flex;
+        height: 40px;
+        width: 150px;
+        border: 2px solid #BFC0C0;
+        margin: 20px 20px 20px 20px;
+        color: #BFC0C0;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: .8em;
+        letter-spacing: 1.5px;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    button:hover {
+        color: #3498db;
+    }
+    button::after {
+        content: "";
+        background: #ecf0f1;
+        position: absolute;
+        z-index: -1;
+        padding: 0.85em 0.75em;
+        display: block;
+    }
+    body {
+        background-size: 400% 400%;
+        margin: 2rem;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        animation: gradient 15s ease infinite;
+        height: 100vh;
+        color: black;
+    }
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
+<body>
+<div class="container">
+    <h2> Notes </h2>
+
+    <!title-- -->
+    <form class="form" action="/note/create" method="post">
+    <div class="row">
+        <div class="col-8">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">#</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1" name="title">
+            </div>
+
+            <!content-- -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> Content </span>
+                </div>
+                <textarea class="form-control" aria-label="Content" name="content"> </textarea>
+            </div>
+                <button class="btn btn-primary" type="submit"> Create Note </button>
+        </div>
+    </div>
+    </form>
+        <h3 th:text="'Notes count: ' + ${notes.size()}"></h3>
+
+        <div th:each="note : ${notes}">
+            <div th:text="'id: ' + ${note.id}"></div>
+            <div th:text="'Title: ' + ${note.title}"></div>
+            <div th:text="'Content: ' + ${note.content}"></div>
+            <div class="btn-group">
+            <form action="/note/edit" method="get">
+                <input type="hidden" name="id" th:value="${note.id}">
+                <button type="submit" class="btn btn-primary"> Update Note </button>
+            </form>
+            <form action="/note/delete" method="post">
+                <input type="hidden" name="id" th:value="${note.id}">
+                <button type="submit" class="btn btn-primary"> Delete Note </button>
+            </form>
+            </div>
+        </div>
+</div>
+</body>
+</html>
+
