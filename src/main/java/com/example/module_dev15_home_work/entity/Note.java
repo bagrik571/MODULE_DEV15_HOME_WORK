@@ -8,4 +8,3 @@ public class Note {
     private String title;
     private String content;
 }
-// my note entity
