@@ -3,10 +3,11 @@ package com.example.module_dev15_home_work.service;
 import com.example.module_dev15_home_work.entity.Note;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
 class NoteServiceTest {
     private NoteService noteService;
 
